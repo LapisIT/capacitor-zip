@@ -13,7 +13,7 @@
   "author": "Osei Fortune",
   "license": "MIT",
   "dependencies": {
-    "@capacitor/core": "latest"
+    "@capacitor/core": "^2.4.1"
   },
   "devDependencies": {
     "typescript": "^2.6.2"
