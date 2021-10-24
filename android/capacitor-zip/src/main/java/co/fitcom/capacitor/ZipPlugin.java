@@ -110,7 +110,8 @@ public class ZipPlugin extends Plugin {
         String source = call.getString("source", "");
         String destination = call.getString("destination", "");
         Boolean overwrite = call.getBoolean("overwrite", true);
-        String password = call.getString("password");
+        String password = call.getString("password", "");
+
 
 
         if (source.contains("_capacitor_")) {
