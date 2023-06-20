@@ -38,7 +38,7 @@ repositories {
 
 
 dependencies {
-  implementation(name: 'zip-lib', ext: 'aar')
+  implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
   implementation project(':capacitor-android')
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'androidx.test.ext:junit:1.1.1'
