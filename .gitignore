@@ -2,4 +2,6 @@ node_modules
 .DS_Store
 ios/Plugin/Pods/
 .idea
-android/capacitor-zip/build
+src/android/build
+.gradle
+local.properties
