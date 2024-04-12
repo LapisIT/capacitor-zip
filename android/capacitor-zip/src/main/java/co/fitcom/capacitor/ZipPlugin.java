@@ -6,6 +6,8 @@ import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 
+import com.getcapacitor.annotation.CapacitorPlugin;
+
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
@@ -17,7 +19,7 @@ import java.io.File;
 import java.util.List;
 
 
-@NativePlugin()
+@CapacitorPlugin()
 public class ZipPlugin extends Plugin {
 
     @PluginMethod(returnType = PluginMethod.RETURN_CALLBACK)
