@@ -1,7 +1,12 @@
-import { Plugins } from '@capacitor/core';
+import { registerPlugin } from '@capacitor/core';
 import { IZip, UnZipOptions, ZipOptions } from './definitions';
 
-const {ZipPlugin} = Plugins;
+interface CapacitorZipPlugin {
+    zip(options: ZipOptions, progress?: Function): Promise<any>;
+    unZip(options: UnZipOptions, progress?: Function): Promise<any>;
+}
+
+const ZipPlugin = registerPlugin<CapacitorZipPlugin>('ZipPlugin');
 
 export class Zip implements IZip {
     public zip(options: ZipOptions, progress?: Function): Promise<any> {

@@ -2,11 +2,12 @@ import { WebPlugin } from '@capacitor/core';
 import { IZip, ZipOptions, UnZipOptions } from './definitions';
 
 export class ZipPluginWeb extends WebPlugin implements IZip {
+  // define readonly properties
+  readonly name = 'ZipPlugin';
+  readonly platforms = ['web'];
+
   constructor() {
-    super({
-      name: 'ZipPlugin',
-      platforms: ['web']
-    });
+    super(); // no arguments in Capacitor 7
   }
 
   zip(options: ZipOptions): Promise<any> {

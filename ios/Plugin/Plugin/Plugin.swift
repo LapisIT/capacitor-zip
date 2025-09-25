@@ -29,7 +29,7 @@ public class ZipPlugin: CAPPlugin {
                 let percent = entryNumber / entriesTotal * 100;
                 if (percent != progress) {
                     progress = Int(percent);
-                    call.success([
+                    call.resolve([
                         "status": "progressing",
                         "progress": progress,
                         "completed": false
@@ -40,13 +40,13 @@ public class ZipPlugin: CAPPlugin {
 
 
         if(completed){
-            call.success([
+            call.resolve([
                 "status": "completed",
                 "progress": 100,
                 "completed": true
                 ])
         } else{
-            call.error("Error creating zip file.")
+            call.reject("Error creating zip file.")
         }
     }
 
@@ -76,7 +76,7 @@ public class ZipPlugin: CAPPlugin {
                 if (percent != progress) {
                     progress = Int(percent);
 
-                    call.success([
+                    call.resolve([
                         "status": "progressing",
                         "progress": progress,
                         "completed": false
@@ -87,14 +87,14 @@ public class ZipPlugin: CAPPlugin {
         } , completionHandler: { (path, succeeded, err) in
 
             if(succeeded){
-                call.success([
+                call.resolve([
                     "status": "completed",
                     "progress": 100,
                     "completed": true,
                     "path": destination
                     ])
             }else{
-                call.error(err?.localizedDescription ?? "Unknown error")
+                call.reject(err?.localizedDescription ?? "Unknown error")
             }
         })
     }

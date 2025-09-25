@@ -1,10 +1,10 @@
 import { WebPlugin } from '@capacitor/core';
 export class ZipPluginWeb extends WebPlugin {
     constructor() {
-        super({
-            name: 'ZipPlugin',
-            platforms: ['web']
-        });
+        super(); // no arguments in Capacitor 7
+        // define readonly properties
+        this.name = 'ZipPlugin';
+        this.platforms = ['web'];
     }
     zip(options) {
         console.log(options);

@@ -1,5 +1,5 @@
-import { Plugins } from '@capacitor/core';
-const { ZipPlugin } = Plugins;
+import { registerPlugin } from '@capacitor/core';
+const ZipPlugin = registerPlugin('ZipPlugin');
 export class Zip {
     zip(options, progress) {
         return new Promise((resolve, reject) => {
