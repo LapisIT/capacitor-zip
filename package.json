@@ -1,6 +1,6 @@
 {
   "name": "capacitor-zip",
-  "version": "7.0.0",
+  "version": "8.0.0",
   "description": "Zip plugin",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -13,10 +13,10 @@
   "author": "Osei Fortune",
   "license": "MIT",
   "dependencies": {
-    "@capacitor/core": "^7.0.0"
+    "@capacitor/core": "^8.0.0"
   },
   "devDependencies": {
-    "@capacitor/cli": "^7.0.0",
+    "@capacitor/cli": "^8.0.0",
     "@types/node": "^20.19.17",
     "typescript": "^5.0.0"
   },
