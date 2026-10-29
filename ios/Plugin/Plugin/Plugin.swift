@@ -6,6 +6,7 @@ import SSZipArchive
 public class ZipPlugin: CAPPlugin {
 
     @objc func zip(_ call: CAPPluginCall){
+        call.keepAlive = true
         var source = call.getString("source") ?? ""
         var destination = call.getString("destination") ?? ""
         let keepParent = call.getBool("overwrite") ?? true
@@ -26,7 +27,7 @@ public class ZipPlugin: CAPPlugin {
         var progress = 0;
         let completed = SSZipArchive.createZipFile(atPath: destination, withContentsOfDirectory: source, keepParentDirectory: keepParent, compressionLevel: -1, password: password, aes: true, progressHandler: { (entryNumber, entriesTotal) in
             if (entriesTotal > 0) {
-                let percent = entryNumber / entriesTotal * 100;
+                let percent = Int(Double(entryNumber) / Double(entriesTotal) * 100);
                 if (percent != progress) {
                     progress = Int(percent);
                     call.resolve([
@@ -40,18 +41,21 @@ public class ZipPlugin: CAPPlugin {
 
 
         if(completed){
+            call.keepAlive = false
             call.resolve([
                 "status": "completed",
                 "progress": 100,
                 "completed": true
                 ])
         } else{
+            call.keepAlive = false
             call.reject("Error creating zip file.")
         }
     }
 
 
     @objc func unZip(_ call: CAPPluginCall){
+        call.keepAlive = true
         var source = call.getString("source") ?? ""
         var destination = call.getString("destination") ?? ""
         let overwrite = call.getBool("overwrite") ?? true
@@ -72,7 +76,7 @@ public class ZipPlugin: CAPPlugin {
 
         SSZipArchive.unzipFile(atPath: source, toDestination: destination, overwrite: overwrite, password: password, progressHandler: {(entry, zipFileInfo, entryNumber, entriesTotal) in
             if (entriesTotal > 0) {
-                let percent = entryNumber / entriesTotal * 100;
+                let percent = Int(Double(entryNumber) / Double(entriesTotal) * 100);
                 if (percent != progress) {
                     progress = Int(percent);
 
@@ -87,6 +91,7 @@ public class ZipPlugin: CAPPlugin {
         } , completionHandler: { (path, succeeded, err) in
 
             if(succeeded){
+                call.keepAlive = false
                 call.resolve([
                     "status": "completed",
                     "progress": 100,
@@ -94,6 +99,7 @@ public class ZipPlugin: CAPPlugin {
                     "path": destination
                     ])
             }else{
+                call.keepAlive = false
                 call.reject(err?.localizedDescription ?? "Unknown error")
             }
         })
